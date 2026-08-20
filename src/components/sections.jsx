@@ -14,11 +14,20 @@ import {
   principles,
   projects,
   timeline,
+  workflowSections,
 } from "../data";
 import { ButtonLink, Reveal, SectionLabel } from "./ui";
 
 export function Hero({ active, onChange }) {
   const current = disciplines[active];
+  const [orbitColor, setOrbitColor] = useState(current.color);
+  useEffect(() => setOrbitColor(current.color), [current.color]);
+  const orbitDisciplines = {
+    PRODUCT: "UX Designer",
+    PEOPLE: "Project Manager",
+    DATA: "Data Engineer",
+    SYSTEMS: "Full-stack Dev",
+  };
   return (
     <section className="hero section-pad">
       <Reveal className="hero-copy">    
@@ -38,16 +47,23 @@ export function Hero({ active, onChange }) {
         </div>
       </Reveal>
       <Reveal className="hero-orbit-wrap">
-        <div className={"hero-orbit " + current.color}>
+        <div className={"hero-orbit " + orbitColor}>
           <div className="orbit-grid" />
           <div className="orbit-center">
             <span>ME</span>
             <small>DESIGN · TECH · DATA</small>
           </div>
           {["PRODUCT", "PEOPLE", "DATA", "SYSTEMS"].map((label, index) => (
-            <span className={"orbit-node node-" + index} key={label}>
+            <button
+              type="button"
+              className={"orbit-node node-" + index}
+              key={label}
+              onClick={() => setOrbitColor(disciplines[orbitDisciplines[label]].color)}
+              aria-label={`Change orbit color to ${label.toLowerCase()}`}
+              aria-pressed={orbitColor === disciplines[orbitDisciplines[label]].color}
+            >
               {label}
-            </span>
+            </button>
           ))}
           <div className="orbit-line line-1" />
           <div className="orbit-line line-2" />
@@ -160,6 +176,8 @@ export function Thinking() {
 }
 
 export function Work({ onOpenProject }) {
+  const [showAll, setShowAll] = useState(false);
+  const visibleProjects = showAll ? projects : projects.slice(0, 4);
   return (
     <section id="work" className="work section-pad">
       <SectionLabel number="04" suffix="A FEW THINGS I’VE MADE ↘">
@@ -177,7 +195,7 @@ export function Work({ onOpenProject }) {
         </p>
       </Reveal>
       <div className="project-list">
-        {projects.map((project, index) => (
+        {visibleProjects.map((project, index) => (
           <Reveal
             className="project-reveal"
             delay={index * 80}
@@ -191,7 +209,9 @@ export function Work({ onOpenProject }) {
         ))}
       </div>
       <Reveal className="center-link" delay={140}>
-        <ButtonLink outline>See all projects</ButtonLink>
+        <button type="button" className="button button-outline projects-toggle" onClick={() => setShowAll(value => !value)}>
+          {showAll ? "Show fewer projects" : "See all projects"} <ArrowUpRight size={17} aria-hidden="true" />
+        </button>
       </Reveal>
     </section>
   );
@@ -199,7 +219,7 @@ export function Work({ onOpenProject }) {
 
 function ProjectCard({ project, onOpen }) {
   return (
-    <article className={"project-card " + project.type}>
+    <article className={"project-card " + project.type} role="button" tabIndex={0} aria-label={`Open ${project.name} case study`} onClick={onOpen} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onOpen(); } }}>
       <div className="project-visual">
         <div className="visual-top">
           <span>{project.number} / 07</span>
@@ -217,13 +237,9 @@ function ProjectCard({ project, onOpen }) {
         <span className="small-label">{project.status}</span>
         <h3>{project.name}</h3>
         <p>{project.desc}</p>
-        <button
-          type="button"
-          className="case-link case-button"
-          onClick={onOpen}
-        >
-          View case study <ArrowUpRight size={15} aria-hidden="true" />
-        </button>
+          <span className="case-link case-button">
+            View case study <ArrowUpRight size={15} aria-hidden="true" />
+          </span>
       </div>
     </article>
   );
@@ -604,11 +620,31 @@ function DesignSnapshotsSection({ project }) {
   );
 }
 
+function buildFocusSections(project, content) {
+  const sourceSections = [...content.sections, ...(workflowSections[project.kind] || [])];
+  const bodyFor = (...ids) => ids.flatMap(id => {
+    const section = sourceSections.find(item => item[0] === id);
+    if (!section) return [`[ADD ${id.toUpperCase().replaceAll('-', ' ')} DETAILS]`];
+    return Array.isArray(section[2]) ? section[2] : [section[2]];
+  });
+  return [
+    ['overview', 'Project overview', [project.category, project.status, content.summary, content.contribution]],
+    ['challenge', 'The Challenge', bodyFor('problem', 'workflow-analysis')],
+    ['goals', 'Goals & Objectives', [...content.focus, ...bodyFor('product-strategy')]],
+    ['research', 'Research and Discovery', bodyFor('research')],
+    ['design-process', 'Design Process', bodyFor('strategy', 'ux', 'ui', 'future-workflow', 'build', 'automation-delivery')],
+    ['solution', 'Final Solution', bodyFor('solution', 'ui', 'ux', 'future-workflow')],
+    ['impact', 'Impact and Solutions', bodyFor('outcome', 'workflow-outcome', 'lessons', 'workflow-lessons')],
+    ['snapshots', 'Design Snapshots', 'UI designs and Figma explorations for this project.']
+  ];
+}
+
 export function CaseStudy({ project, onClose, onNextProject }) {
   const closeRef = useRef(null);
   const content = caseStudyContent[project.kind];
-  const [activeSection, setActiveSection] = useState(content.sections[0][0]);
-  useEffect(() => setActiveSection(content.sections[0][0]), [project.name]);
+  const sections = buildFocusSections(project, content);
+  const [activeSection, setActiveSection] = useState(sections[0][0]);
+  useEffect(() => setActiveSection(sections[0][0]), [project.name]);
   useEffect(() => {
     closeRef.current?.focus();
     const closeOnEscape = (event) => {
@@ -619,7 +655,7 @@ export function CaseStudy({ project, onClose, onNextProject }) {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [onClose]);
   useEffect(() => {
-    const sectionElements = content.sections
+    const sectionElements = sections
       .map(([id]) => document.getElementById("case-" + id))
       .filter(Boolean);
     const observer = new IntersectionObserver(
@@ -633,7 +669,7 @@ export function CaseStudy({ project, onClose, onNextProject }) {
     );
     sectionElements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, [content.sections]);
+  }, [project.name]);
   const currentIndex = projects.findIndex((item) => item.name === project.name);
   const nextProject = projects[(currentIndex + 1) % projects.length];
   return (
@@ -663,7 +699,7 @@ export function CaseStudy({ project, onClose, onNextProject }) {
         <div className="case-layout">
           <aside className="case-nav" aria-label="Case study sections">
             <span>CONTENTS</span>
-            {content.sections.map(([id, title], index) => (
+            {sections.map(([id, title], index) => (
               <a
                 className={activeSection === id ? "active" : ""}
                 href={"#case-" + id}
@@ -711,22 +747,18 @@ export function CaseStudy({ project, onClose, onNextProject }) {
               />
             </Reveal>
             <div className="case-story">
-              {content.sections.map(([id, title, body]) =>
+              {sections.map(([id, title, body], sectionIndex) =>
                 id === "snapshots" ? (
                   <DesignSnapshotsSection project={project} key={id} />
                 ) : (
                   <Reveal className="case-story-reveal" key={id}>
                     <section id={"case-" + id}>
                       <span className="case-number">
-                        {String(
-                          content.sections.findIndex(
-                            (section) => section[0] === id
-                          ) + 1
-                        ).padStart(2, "0")}
+                        {String(sectionIndex + 1).padStart(2, "0")}
                       </span>
                       <div>
                         <h3>{title}</h3>
-                        <p>{body}</p>
+                        {Array.isArray(body) ? <ul>{body.map(point => <li key={point}>{point}</li>)}</ul> : <p>{body}</p>}
                       </div>
                     </section>
                   </Reveal>
@@ -972,26 +1004,28 @@ export function Contact() {
             Have an idea, a product challenge, or simply want to compare notes?
             I’d love to hear from you.
           </p>
-          <a className="contact-email" href="mailto:robertksam2000@gmail.com">
-            <Mail size={19} aria-hidden="true" /> robertksam2000@gmail.com{" "}
-            <ArrowUpRight size={21} aria-hidden="true" />
-          </a>
-        </div>
-        <div className="social-links" aria-label="Social media links">
-          {socialLinks.map(({ label, href, icon }) => (
-            <a
-              key={label}
-              className="social-link"
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`Visit Robert Sam on ${label}`}
-            >
-              <span>{icon}</span>
-              <b>{label}</b>
-              <ArrowUpRight size={16} aria-hidden="true" />
+          <div className="contact-actions">
+            <a className="contact-email" href="mailto:robertksam2000@gmail.com">
+              <Mail size={19} aria-hidden="true" /> robertksam2000@gmail.com{" "}
+              <ArrowUpRight size={21} aria-hidden="true" />
             </a>
-          ))}
+            <div className="social-links" aria-label="Social media links">
+              {socialLinks.map(({ label, href, icon }) => (
+                <a
+                  key={label}
+                  className="social-link"
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Visit Robert Sam on ${label}`}
+                >
+                  <span>{icon}</span>
+                  <b>{label}</b>
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
         <footer className="contact-footer">
           <div className="footer-brand">

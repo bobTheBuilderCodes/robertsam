@@ -403,7 +403,7 @@ body {
 }
 .intro-copy {
   align-self: end;
-  max-width: 300px;
+  max-width: 420px;
 }
 .intro-copy p,
 .thinking-header p,
@@ -544,7 +544,7 @@ body {
 .systems-heading p,
 .data-heading p,
 .play-heading p {
-  max-width: 230px;
+  max-width: 320px;
   margin-bottom: 4px;
 }
 .project-list {
@@ -1074,6 +1074,11 @@ body {
   }
   .hero-copy {
     order: 1;
+  }
+
+  .hero-copy h1{
+    font-size: 60px;
+    background-color: #000;
   }
   .discipline-panel {
     order: 2;
