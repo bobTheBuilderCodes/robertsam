@@ -1076,10 +1076,6 @@ body {
     order: 1;
   }
 
-  .hero-copy h1{
-    font-size: 60px;
-    background-color: #000;
-  }
   .discipline-panel {
     order: 2;
     grid-template-columns: 1fr;
