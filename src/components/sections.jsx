@@ -44,6 +44,9 @@ export function Hero({ active, onChange }) {
           <a className="text-link" href="#contact">
             Let’s work together <span>↗</span>
           </a>
+          <a className="cv-link" href="https://drive.google.com/uc?export=download&id=19zndzHOz2MPrKtYsvJ4K4CmrN4AWS9EB" target="_blank" rel="noreferrer" download>
+            Download CV <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
         </div>
       </Reveal>
       <Reveal className="hero-orbit-wrap">
@@ -97,7 +100,7 @@ export function Hero({ active, onChange }) {
   );
 }
 
-export function About({ selectedStage, onSelectStage }) {
+export function About() {
   return (
     <section id="about" className="intro section-pad">
       <SectionLabel number="02">A LITTLE CONTEXT</SectionLabel>
@@ -122,21 +125,11 @@ export function About({ selectedStage, onSelectStage }) {
         <div className="timeline-track" />
         <div className="timeline-items">
           {timeline.map(([name, description], index) => (
-            <button
-              className={
-                selectedStage === index
-                  ? "timeline-item selected"
-                  : "timeline-item"
-              }
-              key={name}
-              onClick={() => onSelectStage(index)}
-            >
+            <div className="timeline-item" key={name}>
               <span>0{index + 1}</span>
               <b>{name}</b>
-              <small>
-                {selectedStage === index ? description : "click to explore"}
-              </small>
-            </button>
+              <small>{description}</small>
+            </div>
           ))}
         </div>
       </Reveal>
@@ -164,10 +157,8 @@ export function Thinking() {
       <Reveal className="principles" delay={100}>
         {principles.map(([number, title, description]) => (
           <div className="principle" key={number}>
-            <span>{number}</span>
             <h3>{title}</h3>
             <p>{description}</p>
-            <ArrowUpRight size={18} />
           </div>
         ))}
       </Reveal>
@@ -826,9 +817,9 @@ export function Systems({ icons }) {
           <div className="terminal">
             <span>robert@studio:~$</span>
             <br />
-            ship --with --intention
+            design --build --learn
             <br />
-            <b>✓ deployment ready</b>
+            <b>✓ ideas made useful</b>
           </div>
         </div>
       </Reveal>
@@ -888,6 +879,16 @@ export function DataSection() {
 }
 
 export function Playground({ value, onChange }) {
+  const palettes = [
+    { name: "sunset", hex: "#F06E3C", colors: ["#fff0c7", "#f7c443", "#e74537"] },
+    { name: "ocean", hex: "#3f8fba", colors: ["#d5f2f0", "#61c4c8", "#245b88"] },
+    { name: "meadow", hex: "#789b52", colors: ["#eef0bd", "#c9d458", "#46704d"] },
+  ];
+  const [paletteIndex, setPaletteIndex] = useState(0);
+  const palette = palettes[paletteIndex];
+
+  const changePalette = () => setPaletteIndex((index) => (index + 1) % palettes.length);
+
   return (
     <section id="playground" className="playground section-pad">
       <SectionLabel number="07" suffix="NO REAL WORK HAPPENS HERE ↘">
@@ -904,19 +905,17 @@ export function Playground({ value, onChange }) {
         </p>
       </Reveal>
       <Reveal className="play-grid" delay={120}>
-        <div className="play-card color-card">
+        <div className="play-card color-card" style={{ "--play-color": palette.hex }}>
           <span className="small-label">COLOR / 001</span>
-          <div className="color-orb" />
+          <button className="color-orb" type="button" onClick={changePalette} aria-label={`Change color palette from ${palette.name}`} />
           <h3>
             Find your
             <br />
             next color.
           </h3>
           <div className="color-swatch">
-            <i />
-            <i />
-            <i />
-            <span>#F06E3C</span>
+            {palette.colors.map((color) => <i key={color} style={{ background: color }} />)}
+            <span>{palette.hex}</span>
           </div>
         </div>
         <div className="play-card chart-card">
@@ -935,13 +934,14 @@ export function Playground({ value, onChange }) {
             type="range"
             value={value}
             onChange={(event) => onChange(event.target.value)}
+            aria-label="Curiosity level controls the type scale"
           />
           <div className="chart-value">
             {value}
             <small> / curiosity level</small>
           </div>
         </div>
-        <div className="play-card type-card">
+        <div className="play-card type-card" style={{ fontSize: `${12 + value / 5}px` }}>
           <span className="small-label">TYPE / 003</span>
           <div
             className="type-sample"
@@ -954,7 +954,6 @@ export function Playground({ value, onChange }) {
             <br />
             <span>feel right.</span>
           </h3>
-          <a href="#playground">adjust the feeling ↗</a>
         </div>
       </Reveal>
     </section>
@@ -990,7 +989,7 @@ export function Contact() {
     },
   ];
   return (
-    <section id="contact" className="contact section-pad">
+    <section id="contact" className="contact section-pad" >
       <SectionLabel number="08">YOUR MOVE</SectionLabel>
       <Reveal className="contact-inner">
         <p className="kicker">HAVE A GOOD PROBLEM?</p>
@@ -999,14 +998,14 @@ export function Contact() {
           <br />
           <em>something useful.</em>
         </h2>
-        <div className="contact-intro">
+        <div className="contact-intro" >
           <p>
             Have an idea, a product challenge, or simply want to compare notes?
             I’d love to hear from you.
           </p>
           <div className="contact-actions">
-            <a className="contact-email" href="mailto:robertksam2000@gmail.com">
-              <Mail size={19} aria-hidden="true" /> robertksam2000@gmail.com{" "}
+            <a className="contact-email" href="mailto:robertksam2000@gmail.com" aria-label="Email Robert Sam at robertksam2000@gmail.com">
+              <Mail size={19} aria-hidden="true" /> Email{" "}
               <ArrowUpRight size={21} aria-hidden="true" />
             </a>
             <div className="social-links" aria-label="Social media links">

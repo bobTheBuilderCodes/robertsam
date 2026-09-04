@@ -10,7 +10,7 @@ export const projects = [
   { number: '02', category: 'PRODUCT DESIGN / PRODUCT OWNERSHIP', name: 'Contract & Invoice Platform', desc: 'An enterprise workflow system for contracts, resources and invoicing.', type: 'ochre', tags: ['Enterprise', 'Workflow automation', 'Product ownership'], kind: 'workflow', status: 'Completed' },
   { number: '03', category: 'PRODUCT DESIGN / ENTERPRISE UX', name: 'ICON', desc: 'An ERP platform for a German institute, designed around scalable enterprise systems.', type: 'lime', tags: ['Enterprise', 'Atomic design', 'Design systems'], kind: 'design-system', status: 'Completed' },
   { number: '04', category: 'PRODUCT DESIGN / MOBILE UX', name: 'CaptiVR', desc: 'A 360-video recording solution with intuitive mobile workflows.', type: 'lavender', tags: ['Mobile UX', 'Prototyping', 'Development'], kind: 'mobile', status: 'Completed' },
-  { number: '05', category: 'PRODUCT DESIGN / PRODUCT MANAGEMENT', name: 'ALS', desc: 'An AmaliTech learning platform shaped by requirements, feedback and delivery.', type: 'cyan', tags: ['LMS', 'Product management', 'Development'], kind: 'roadmap', status: 'Completed' },
+  { number: '05', category: 'PRODUCT DESIGN / PRODUCT MANAGEMENT', name: 'ALS', desc: 'A learning management platform designed to equip employees with their professional development and career growth.', type: 'cyan', tags: ['LMS', 'Product management', 'Development'], kind: 'roadmap', status: 'Completed' },
   { number: '06', category: 'PRODUCT DESIGN / DATA VISUALIZATION', name: 'PMMD', desc: 'A productivity monitoring tool that turns performance data into clearer action.', type: 'purple', tags: ['Dashboard', 'Data visualization', 'Analytics'], kind: 'dashboard', status: 'Completed' }
 ];
 

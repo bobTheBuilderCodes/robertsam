@@ -10,7 +10,6 @@ import './case-study.css';
 function App() {
   const [activeDiscipline, setActiveDiscipline] = useState(Object.keys(disciplines)[0]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedStage, setSelectedStage] = useState(2);
   const [playValue, setPlayValue] = useState(56);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -22,7 +21,7 @@ function App() {
       <FloatingHomeButton onHome={() => setSelectedProject(null)} />
       {selectedProject ? <CaseStudy project={selectedProject} onClose={() => setSelectedProject(null)} onNextProject={setSelectedProject} /> : <main id="top">
         <Hero active={activeDiscipline} onChange={setActiveDiscipline} />
-        <About selectedStage={selectedStage} onSelectStage={setSelectedStage} />
+        <About />
         <Thinking />
         <Work onOpenProject={setSelectedProject} />
         <Systems icons={{ user: <MousePointer2 />, default: <Code2 />, database: <Database /> }} />
