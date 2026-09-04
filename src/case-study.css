@@ -1125,7 +1125,9 @@
 .contact-inner > .contact-intro {
   grid-column: 2;
   grid-row: 2;
-  align-self: end;
+  align-self: center;
+  padding-top: 28px;
+  box-sizing: border-box;
 }
 .contact-inner > .contact-footer {
   grid-column: 1 / -1;
@@ -1141,25 +1143,36 @@
 }
 .contact-intro > p {
   align-self: flex-end;
-  width: min(100%, 320px);
+  width: min(100%, 420px);
+  max-width: 420px;
 }
 .contact-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  flex-wrap: nowrap;
   gap: 24px;
   width: 100%;
+  padding-right: 0;
   margin-left: 0;
 }
 .contact-actions .social-links {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  flex: 1 1 0;
   gap: 8px;
+  max-width: 100%;
+  min-width: 0;
   margin: 0;
   border: 0;
 }
+.contact-actions .social-link {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 .contact-actions .contact-email {
-  width: auto;
+  width: 100%;
   border: 1px solid #17171533;
   padding: 10px 11px;
   gap: 7px;
@@ -1173,10 +1186,15 @@
   }
   .contact-intro {
     display: block;
+    padding-right: 0;
   }
   .contact-actions {
     display: block;
     margin-top: 28px;
+  }
+  .contact-actions .social-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 18px;
   }
   .contact .contact-footer {
     margin: 64px 0 0;

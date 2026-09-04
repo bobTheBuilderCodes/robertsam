@@ -989,7 +989,7 @@ export function Contact() {
     },
   ];
   return (
-    <section id="contact" className="contact section-pad" >
+    <section id="contact" className="contact section-pad">
       <SectionLabel number="08">YOUR MOVE</SectionLabel>
       <Reveal className="contact-inner">
         <p className="kicker">HAVE A GOOD PROBLEM?</p>
@@ -998,17 +998,17 @@ export function Contact() {
           <br />
           <em>something useful.</em>
         </h2>
-        <div className="contact-intro" >
+        <div className="contact-intro">
           <p>
             Have an idea, a product challenge, or simply want to compare notes?
             I’d love to hear from you.
           </p>
           <div className="contact-actions">
-            <a className="contact-email" href="mailto:robertksam2000@gmail.com" aria-label="Email Robert Sam at robertksam2000@gmail.com">
-              <Mail size={19} aria-hidden="true" /> Email{" "}
-              <ArrowUpRight size={21} aria-hidden="true" />
-            </a>
-            <div className="social-links" aria-label="Social media links">
+            <div className="social-links" aria-label="Email and social media links">
+              <a className="contact-email" href="mailto:robertksam2000@gmail.com" aria-label="Email Robert Sam at robertksam2000@gmail.com">
+                <Mail size={19} aria-hidden="true" /> Email{" "}
+                <ArrowUpRight size={21} aria-hidden="true" />
+              </a>
               {socialLinks.map(({ label, href, icon }) => (
                 <a
                   key={label}
