@@ -536,9 +536,8 @@ function DesignSnapshotsSection({ project }) {
       <div>
         <h3>Design snapshots</h3>
         <p>
-          Selected UI explorations for {project.name}, created in Figma. Replace
-          these example frames with exported designs or Figma embeds as the case
-          study evolves.
+          Selected UI explorations and interface directions for {project.name},
+          created in Figma.
         </p>
         <div className="snapshot-gallery">
           {labels.map((label, index) => (
@@ -613,19 +612,41 @@ function DesignSnapshotsSection({ project }) {
 
 function buildFocusSections(project, content) {
   const sourceSections = [...content.sections, ...(workflowSections[project.kind] || [])];
-  const bodyFor = (...ids) => ids.flatMap(id => {
+  const bodyFor = (id, fallback) => {
     const section = sourceSections.find(item => item[0] === id);
-    if (!section) return [`[ADD ${id.toUpperCase().replaceAll('-', ' ')} DETAILS]`];
-    return Array.isArray(section[2]) ? section[2] : [section[2]];
-  });
+    if (!section) return fallback;
+    return Array.isArray(section[2]) ? section[2][0] : section[2];
+  };
+  const goalsPlaceholder = [
+    '[Add project goal 1 here.]',
+    '[Add project goal 2 here.]',
+    '[Add project goal 3 here.]',
+    '[Add project goal 4 here.]',
+  ];
+  const researchPlaceholder = [
+    '[Add research finding 1 here.]',
+    '[Add research finding 2 here.]',
+    '[Add research finding 3 here.]',
+    '[Add research finding 4 here.]',
+  ];
+  const impactPlaceholder = [
+    '[Add impact or solution 1 here.]',
+    '[Add impact or solution 2 here.]',
+    '[Add impact or solution 3 here.]',
+  ];
   return [
-    ['overview', 'Project overview', [project.category, project.status, content.summary, content.contribution]],
-    ['challenge', 'The Challenge', bodyFor('problem', 'workflow-analysis')],
-    ['goals', 'Goals & Objectives', [...content.focus, ...bodyFor('product-strategy')]],
-    ['research', 'Research and Discovery', bodyFor('research')],
-    ['design-process', 'Design Process', bodyFor('strategy', 'ux', 'ui', 'future-workflow', 'build', 'automation-delivery')],
-    ['solution', 'Final Solution', bodyFor('solution', 'ui', 'ux', 'future-workflow')],
-    ['impact', 'Impact and Solutions', bodyFor('outcome', 'workflow-outcome', 'lessons', 'workflow-lessons')],
+    ['overview', 'Project overview', content.summary],
+    ['challenge', 'The Challenge', bodyFor('problem', '[Add the project problem statement here.]')],
+    ['goals', 'Goals and Objectives', content.goals || goalsPlaceholder],
+    ['research', 'Research and Discovery', content.research || researchPlaceholder],
+    ['design-process', 'Design Process', content.designProcess || [
+      'Discover — understand the users, context and problem space.',
+      'Define — synthesize findings into a focused problem statement.',
+      'Ideate — explore multiple directions before choosing a solution.',
+      'Prototype — make the strongest ideas tangible and testable.',
+      'Test and iterate — learn from feedback, refine the work and prepare it for delivery.',
+    ]],
+    ['impact', 'Impact and Solutions', content.impact || impactPlaceholder],
     ['snapshots', 'Design Snapshots', 'UI designs and Figma explorations for this project.']
   ];
 }
