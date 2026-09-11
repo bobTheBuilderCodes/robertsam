@@ -429,17 +429,17 @@ function SnapshotPreview() {
 }
 
 function DashboardPreview() {
-  const [activeMetric, setActiveMetric] = useState("Focus time");
+  const [activeMetric, setActiveMetric] = useState("Profile sections");
   const metrics = [
-    ["Focus time", "42h", "Time spent in focused work"],
-    ["Tasks completed", "86%", "Progress against assigned tasks"],
-    ["On track", "24", "People currently on track"],
+    ["Profile sections", "08", "Sections ready to complete"],
+    ["CV templates", "12", "Layouts ready to personalize"],
+    ["Ready to export", "01", "Polished document to download"],
   ];
   return (
     <div className="case-visual dashboard-visual">
       <div className="dashboard-top">
-        <span>PMMT / PRODUCTIVITY OVERVIEW</span>
-        <span>THIS MONTH ↗</span>
+        <span>CV BUILDER / WORKFLOW OVERVIEW</span>
+        <span>BUILD YOUR STORY ↗</span>
       </div>
       <div className="metric-grid">
         {metrics.map(([label, value, detail]) => (
@@ -543,9 +543,27 @@ function DesignSnapshotsSection({ project }) {
       ["Jobbase", "/images/projects/icon/jobbase.png"],
       ["Employee insights", "/images/projects/icon/employee-insights.png"],
     ],
-    dashboard: ["KPI overview", "Analytics view", "Progress state"],
-    mobile: ["Capture flow", "Recording state", "Review screen"],
-    roadmap: ["Learning path", "Course view", "Progress state"],
+    dashboard: [
+      ["CV Builder homepage", "/images/projects/cv-builder/homepage.png"],
+      ["Account access", "/images/projects/cv-builder/login.png"],
+      ["Template library", "/images/projects/cv-builder/templates.png"],
+      ["CV editor and preview", "/images/projects/cv-builder/editor-preview.png"],
+      ["Resume library", "/images/projects/cv-builder/resume-library.png"],
+    ],
+    mobile: [
+      ["Capture flow", "/images/projects/captivr/landing-capture.png"],
+      ["Ride gallery", "/images/projects/captivr/ride-gallery.png"],
+      ["Camera permission", "/images/projects/captivr/camera-permission.png"],
+      ["Consent flow", "/images/projects/captivr/eula-consent.png"],
+      ["Empty video state", "/images/projects/captivr/no-videos.png"],
+    ],
+    roadmap: [
+      ["LMS login", "/images/projects/learning-management/login.png"],
+      ["Course management", "/images/projects/learning-management/manage-courses.png"],
+      ["Course builder", "/images/projects/learning-management/course-builder.png"],
+      ["Profile management", "/images/projects/learning-management/edit-profile.png"],
+      ["Course progress", "/images/projects/learning-management/course-progress.png"],
+    ],
   };
   const snapshotSet = snapshotSets[project.kind] || ["UI exploration", "Interaction study", "Visual system"];
   const snapshots = snapshotSet.map((snapshot) => Array.isArray(snapshot) ? { label: snapshot[0], src: snapshot[1] } : { label: snapshot });

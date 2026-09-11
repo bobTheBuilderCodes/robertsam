@@ -480,6 +480,30 @@
 .design-snapshots.project-design-system .gallery-2 { background: #a6c2ef; }
 .design-snapshots.project-design-system .gallery-3 { background: #b3a6d8; }
 .design-snapshots.project-design-system .gallery-4 { background: #8ecfd0; }
+.design-snapshots.project-mobile .snapshot-gallery { gap: 18px; }
+.design-snapshots.project-mobile .gallery-frame { min-height: 470px; padding: 20px; }
+.design-snapshots.project-mobile .gallery-art { height: 380px; padding: 10px; }
+.design-snapshots.project-mobile .gallery-1 { background: #f3d7a4; }
+.design-snapshots.project-mobile .gallery-2 { background: #a6c2ef; }
+.design-snapshots.project-mobile .gallery-3 { background: #b3a6d8; }
+.design-snapshots.project-mobile .gallery-4 { background: #8ecfd0; }
+.design-snapshots.project-mobile .gallery-5 { background: #f4b6a6; }
+.design-snapshots.project-roadmap .snapshot-gallery { gap: 18px; }
+.design-snapshots.project-roadmap .gallery-frame { min-height: 360px; padding: 20px; }
+.design-snapshots.project-roadmap .gallery-art { height: 270px; padding: 10px; }
+.design-snapshots.project-roadmap .gallery-1 { background: #c8d8f2; }
+.design-snapshots.project-roadmap .gallery-2 { background: #f3d7a4; }
+.design-snapshots.project-roadmap .gallery-3 { background: #b3a6d8; }
+.design-snapshots.project-roadmap .gallery-4 { background: #c8e4d0; }
+.design-snapshots.project-roadmap .gallery-5 { background: #f4b6a6; }
+.design-snapshots.project-dashboard .snapshot-gallery { gap: 18px; }
+.design-snapshots.project-dashboard .gallery-frame { min-height: 390px; padding: 20px; }
+.design-snapshots.project-dashboard .gallery-art { height: 300px; padding: 10px; }
+.design-snapshots.project-dashboard .gallery-1 { background: #d9c8f2; }
+.design-snapshots.project-dashboard .gallery-2 { background: #c8d8f2; }
+.design-snapshots.project-dashboard .gallery-3 { background: #f3d7a4; }
+.design-snapshots.project-dashboard .gallery-4 { background: #c8e4d0; }
+.design-snapshots.project-dashboard .gallery-5 { background: #f4b6a6; }
 .design-snapshots.project-audit .gallery-art {
   height: 300px;
   padding: 10px;
@@ -944,6 +968,24 @@
   }
   .design-snapshots.project-design-system .gallery-art {
     height: 320px;
+  }
+  .design-snapshots.project-mobile .gallery-frame {
+    min-height: 500px;
+  }
+  .design-snapshots.project-mobile .gallery-art {
+    height: 410px;
+  }
+  .design-snapshots.project-roadmap .gallery-frame {
+    min-height: 410px;
+  }
+  .design-snapshots.project-roadmap .gallery-art {
+    height: 320px;
+  }
+  .design-snapshots.project-dashboard .gallery-frame {
+    min-height: 440px;
+  }
+  .design-snapshots.project-dashboard .gallery-art {
+    height: 350px;
   }
 }
 .contact-footer {
