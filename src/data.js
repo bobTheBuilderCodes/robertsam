@@ -75,7 +75,7 @@ export const projects = [
   {
     number: "06",
     category: "PRODUCT DESIGN / DATA VISUALIZATION",
-    name: "PMMD",
+    name: "PMMT",
     desc: "A productivity monitoring tool that turns performance data into clearer action.",
     type: "purple",
     tags: ["Dashboard", "Data visualization", "Analytics"],
@@ -172,12 +172,50 @@ export const caseStudyContent = {
   roadmap: {
     title: "A learning platform shaped by feedback.",
     summary:
-      "A detailed product design, management and development story from requirements through release.",
+      "The AmaliTech Learning Management System (LMS) was designed to provide a centralized digital learning experience for employees and learners, bringing training, learning content, progress tracking and learning administration into a single platform. I worked across the project as both Product Owner and Lead Product Designer, combining product strategy, requirements definition, stakeholder management, UX strategy and end-to-end product design.",
     contribution:
       "Led development and optimization, participated in requirements gathering, prioritized features from user feedback and helped shape the product roadmap.",
     focus: ["User needs", "Requirements", "Prioritization", "Development"],
+    goals: [
+      "Create a centralized learning platform.",
+      "Simplify course discovery and access.",
+      "Provide a clear learning journey and improve visibility of learning progress.",
+      "Support structured learning programs and an intuitive administration experience.",
+      "Establish a scalable UX foundation for future learning capabilities.",
+      "Align product requirements, business objectives and user needs.",
+    ],
+    research: [
+      "Held stakeholder discussions and gathered requirements.",
+      "Understood existing learning workflows.",
+      "Identified learner and administrator needs.",
+      "Mapped key learning journeys and defined information architecture.",
+      "Identified functional and UX gaps.",
+      "Prioritized requirements based on business and user value.",
+      "Translated requirements into user stories and acceptance criteria.",
+    ],
+    designProcess: [
+      "Defined product information architecture and learner journeys.",
+      "Designed course discovery, navigation and content experiences.",
+      "Created learning dashboards, progress states and completion flows.",
+      "Designed forms, data tables and administrative workflows.",
+      "Created responsive layouts, interaction patterns and reusable components.",
+      "Produced high-fidelity UI designs and prototypes.",
+      "Defined and prioritized the backlog with engineering and stakeholders.",
+      "Supported UAT, reviewed delivered functionality and prioritized improvements.",
+    ],
+    impact: [
+      "Established a centralized foundation for digital learning within AmaliTech.",
+      "Brought learning content, training, progress tracking and administration into one platform.",
+      "Created a clearer learning experience for employees, learners and administrators.",
+      "Connected product strategy and design decisions to actionable product work.",
+      "Improved the foundation for future learning capabilities and scalable delivery.",
+    ],
     sections: [
-      ["problem", "The problem", "[ADD PRODUCT PROBLEM DETAILS]"],
+      [
+        "problem",
+        "The Challenge",
+        "Learning activities and training resources can become fragmented when learners have to navigate multiple tools, processes or sources of information. The platform needed to make it easy to discover relevant learning opportunities, access content, understand progress, complete assigned courses, track learning activities and manage learning programs, while giving administrators appropriate control and visibility.",
+      ],
       [
         "research",
         "Research & feedback",
@@ -208,27 +246,64 @@ export const caseStudyContent = {
     ],
   },
   "design-system": {
-    title: "Enterprise UX, built to scale.",
+    title: "One connected system for a complex business.",
     summary:
-      "An ERP platform for a German institute, with a focus on requirements, atomic design and iterative improvement.",
+      "ICON Project is an enterprise ERP platform designed to centralize and manage the core business activities of a German company. It connects employee and expert management, projects, budgets, missions, time and expenses, financial controlling, accounting and reporting within one ecosystem.",
     contribution:
-      "Designed atomic design systems, partnered with Product Managers, gathered requirements and improved the product through client feedback and usability testing.",
+      "As Product Designer and Lead Product Designer, I transformed complex business requirements and interconnected workflows into clear, scalable and intuitive enterprise experiences.",
     focus: [
       "Enterprise UX",
       "Requirements gathering",
       "Atomic design",
       "Usability testing",
     ],
+    goals: [
+      "Centralize core business operations within one platform.",
+      "Improve visibility across employees, experts, projects and finances.",
+      "Connect information between different business functions.",
+      "Simplify project and resource management.",
+      "Improve management of internal employees and external experts.",
+      "Support project budgeting and financial control.",
+      "Digitize invoice, receipt and accounting processes.",
+      "Reduce manual administrative processes.",
+      "Provide reliable reporting and analytics.",
+      "Establish a scalable foundation for future business operations.",
+    ],
+    research: [
+      "Explored user roles and responsibilities across the organization.",
+      "Mapped existing business workflows and employee management processes.",
+      "Investigated expert, partner, project and client contract relationships.",
+      "Mapped budgeting, cost management and mission planning workflows.",
+      "Studied time, expense, invoice, receipt, accounting and reporting requirements.",
+      "Documented relationships and dependencies between modules.",
+      "Traced how expert skills and availability influence staffing, projects, missions, expenses and financial reporting.",
+    ],
+    designProcess: [
+      "Structured the information architecture around Administration → Employees → Experts & Partners → Projects → Controlling → Accounting → Reporting.",
+      "Mapped end-to-end journeys across modules, including Project Creation → Client Contract → Budget → Personnel Allocation → Mission → Time & Expense → Controlling → Accounting → Reporting.",
+      "Designed employee profiles, time management, expert availability and skills experiences.",
+      "Designed project creation, client contracts, budgets, personnel allocation and mission management.",
+      "Designed time and expense reporting, invoice and receipt management, local office budgets, accounting and reports.",
+      "Applied information hierarchy, tables, filtering, forms, navigation, dashboards and clear status communication.",
+      "Connected related information across modules so users could understand projects, personnel, experts, missions, budgets and expenses without reconstructing the relationships manually.",
+    ],
+    impact: [
+      "Centralized a broad range of organizational activities into one enterprise management ecosystem.",
+      "Connected people, experts, projects, resources, missions, expenses, finance, accounting and reporting.",
+      "Created a shared foundation for users to work within their responsibilities while benefiting from connected organizational information.",
+      "Improved the experience of navigating complex information architecture, multiple user roles, interdependent workflows and large datasets.",
+      "Established a scalable enterprise experience for project management, resource management, financial systems, data and analytics.",
+    ],
     sections: [
       [
         "problem",
         "The enterprise context",
-        "ICON required consistent, scalable interfaces across products while responding to evolving client needs.",
+        "The organization manages activities involving internal employees and external experts while also managing projects, client contracts, budgets, missions, expenses, invoices and accounting. The challenge was to create a unified platform that made these interconnected processes understandable for HR, project management, finance and leadership users.",
       ],
       [
         "research",
         "Research & requirements",
-        "Partnered with Product Managers and participated in structured client engagement sessions to understand requirements.",
+        "Discovery focused on user roles, business workflows and the relationships between employees, experts, projects, budgets, missions, time, expenses, invoices, accounting and reporting.",
       ],
       ["strategy", "Research findings", "[ADD RESEARCH FINDINGS]"],
       ["ux", "UX challenges", "[ADD UX CHALLENGES]"],
@@ -258,20 +333,54 @@ export const caseStudyContent = {
   dashboard: {
     title: "Turning productivity data into action.",
     summary:
-      "A data-driven monitoring and management tool for productivity metrics, progress and task visibility.",
+      "The Productivity Monitoring Management Tool (PMMT) is an internal enterprise platform designed to help organizations understand and monitor the productivity of internal teams. It provides management with visibility into team activity, productivity patterns, performance indicators and operational trends so they can make informed decisions around workload, performance, resource allocation and team management.",
     contribution:
-      "Designed dashboards, productivity visualizations, progress monitoring, task management, time-tracking workflows and performance analytics experiences.",
+      "As Product Designer, I designed PMMT into a data-driven productivity intelligence platform, transforming complex internal workforce activity and performance data into clear, actionable insights for managers.",
     focus: [
       "Metrics",
       "Data visualization",
       "Task management",
       "Performance analytics",
     ],
+    goals: [
+      "Centralize productivity information.",
+      "Give managers visibility into team performance and make productivity trends easy to understand.",
+      "Reduce reliance on manually compiled reports.",
+      "Help identify productivity patterns and potential issues.",
+      "Enable drill-down from organization and team insights to relevant details.",
+      "Provide role-based access to sensitive information.",
+      "Create a scalable foundation for productivity analytics.",
+    ],
+    research: [
+      "Understood existing productivity measurement processes.",
+      "Identified key productivity indicators and mapped manager workflows.",
+      "Defined different user roles and access levels.",
+      "Distinguished activity data from meaningful productivity.",
+      "Mapped reporting and monitoring requirements.",
+      "Identified opportunities to automate manual processes.",
+      "Designed an information hierarchy so managers could move from awareness to investigation without being overwhelmed by raw data.",
+    ],
+    designProcess: [
+      "Structured the information architecture around Organization → Team → Individual → Activity / Productivity Details.",
+      "Designed dashboard experiences around the questions managers need to answer: how are we doing, which teams need attention, what is driving the change, and what requires investigation.",
+      "Selected visualizations that make comparisons, trends and deviations easy to understand.",
+      "Designed filtering, segmentation, search, tables, reporting and date-based analysis.",
+      "Created detail views, empty states, loading states, error states and role-based experiences.",
+      "Designed responsive layouts, interaction patterns, high-fidelity UI and prototypes.",
+      "Applied privacy and access principles to navigation, dashboard content, detail views and data presentation.",
+    ],
+    impact: [
+      "Created a centralized experience for understanding internal productivity and team performance.",
+      "Transformed fragmented productivity reporting into a structured digital experience for decision support.",
+      "Enabled managers to move from awareness to understanding, investigation and action.",
+      "Made complex workforce data clearer through contextual visualizations and information hierarchy.",
+      "Established a scalable foundation for productivity analytics and role-appropriate access.",
+    ],
     sections: [
       [
         "problem",
-        "The productivity problem",
-        "[ADD PRODUCTIVITY PROBLEM DETAILS]",
+        "The Challenge",
+        "Monitoring productivity across internal teams can quickly become a data-heavy problem. Managers need visibility into performance without being overwhelmed by raw activity data, while employees and teams need to be represented fairly with productivity metrics presented in the appropriate context. The key design challenge was: How do we transform large amounts of employee and team activity data into meaningful insights that managers can use to make decisions? The product needed to balance data visibility, ease of interpretation, performance monitoring, team-level insights, individual-level information, reporting, privacy and appropriate access, and actionable decision-making.",
       ],
       [
         "research",
@@ -310,10 +419,42 @@ export const caseStudyContent = {
   mobile: {
     title: "Making 360-video feel intuitive.",
     summary:
-      "A mobile UX and frontend story across user flows, prototypes, Material UI and responsive implementation.",
+      "CaptiVR is a 360° video recording experience designed for users riding roller coasters. The concept combines immersive video capture with amusement-park experiences, allowing riders to capture their experience from a 360° perspective and revisit the ride afterward.",
     contribution:
       "Designed mobile interfaces, created user flows and prototypes, collaborated with clients, validated journeys and implemented responsive UI with JavaScript, CSS and customized Material UI components.",
     focus: ["Mobile UX", "User flows", "Design-to-code", "Material UI"],
+    goals: [
+      "Make recording a ride experience simple.",
+      "Minimize interaction required during the ride.",
+      "Clearly communicate recording status and build trust that the experience was captured.",
+      "Make captured 360° content easy to access and understand afterward.",
+      "Create an engaging post-ride experience for discovery, playback and sharing.",
+      "Establish a scalable foundation for future CaptiVR experiences.",
+    ],
+    research: [
+      "Considered the complete journey: Before the ride → Prepare → Ride → Capture → Finish → Relive → Share.",
+      "Accounted for riders moving at high speed and experiencing strong physical sensations.",
+      "Recognized that users have limited attention and may be unable to interact with their phone during the ride.",
+      "Identified the need for confidence before the ride, minimal interaction during it and discovery after it.",
+      "Explored how users unfamiliar with 360° video understand and navigate immersive content.",
+    ],
+    designProcess: [
+      "Mapped the physical ride journey and the digital experience around it.",
+      "Designed user journeys, information architecture and mobile interaction patterns.",
+      "Reduced interaction progressively as the user gets closer to the ride.",
+      "Designed recording states, status feedback and post-ride content management.",
+      "Designed the 360° video viewing model and explained how users explore immersive content.",
+      "Created navigation, empty states, loading states and error handling.",
+      "Produced high-fidelity UI, prototypes and reusable design-system components.",
+      "Validated the interaction direction through prototyping and client collaboration.",
+    ],
+    impact: [
+      "Created a mobile experience that fits naturally around a high-intensity physical ride.",
+      "Reduced cognitive load by making recording simple and interaction-light during the ride.",
+      "Connected capture, playback, discovery and sharing into one coherent post-ride experience.",
+      "Established interaction patterns for helping users understand and explore 360° video.",
+      "Strengthened experience designing products where the physical environment shapes digital behavior.",
+    ],
     sections: [
       [
         "problem",

@@ -438,7 +438,7 @@ function DashboardPreview() {
   return (
     <div className="case-visual dashboard-visual">
       <div className="dashboard-top">
-        <span>PMMD / PRODUCTIVITY OVERVIEW</span>
+        <span>PMMT / PRODUCTIVITY OVERVIEW</span>
         <span>THIS MONTH ↗</span>
       </div>
       <div className="metric-grid">
