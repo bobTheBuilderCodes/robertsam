@@ -456,6 +456,30 @@
   background: #8ecfd0;
   transform: translateY(14px) rotate(1deg);
 }
+.design-snapshots.project-workflow .snapshot-gallery {
+  gap: 18px;
+}
+.design-snapshots.project-workflow .gallery-frame {
+  min-height: 360px;
+  padding: 20px;
+}
+.design-snapshots.project-workflow .gallery-art {
+  height: 270px;
+  padding: 10px;
+}
+.design-snapshots.project-workflow .gallery-1 { background: #a6c2ef; }
+.design-snapshots.project-workflow .gallery-2 { background: #f3d7a4; }
+.design-snapshots.project-workflow .gallery-3 { background: #b3a6d8; }
+.design-snapshots.project-workflow .gallery-4 { background: #8ecfd0; }
+.design-snapshots.project-workflow .gallery-5 { background: #dce66b; }
+.design-snapshots.project-workflow .gallery-6 { background: #f08370; }
+.design-snapshots.project-design-system .snapshot-gallery { gap: 18px; }
+.design-snapshots.project-design-system .gallery-frame { min-height: 360px; padding: 20px; }
+.design-snapshots.project-design-system .gallery-art { height: 270px; padding: 10px; }
+.design-snapshots.project-design-system .gallery-1 { background: #f3d7a4; }
+.design-snapshots.project-design-system .gallery-2 { background: #a6c2ef; }
+.design-snapshots.project-design-system .gallery-3 { background: #b3a6d8; }
+.design-snapshots.project-design-system .gallery-4 { background: #8ecfd0; }
 .design-snapshots.project-audit .gallery-art {
   height: 300px;
   padding: 10px;
@@ -908,6 +932,18 @@
   }
   .design-snapshots.project-audit .gallery-art {
     height: 350px;
+  }
+  .design-snapshots.project-workflow .gallery-frame {
+    min-height: 410px;
+  }
+  .design-snapshots.project-workflow .gallery-art {
+    height: 320px;
+  }
+  .design-snapshots.project-design-system .gallery-frame {
+    min-height: 410px;
+  }
+  .design-snapshots.project-design-system .gallery-art {
+    height: 320px;
   }
 }
 .contact-footer {

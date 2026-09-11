@@ -309,8 +309,8 @@ export const caseStudyContent = {
       ["ux", "UX challenges", "[ADD UX CHALLENGES]"],
       [
         "ui",
-        "Atomic design system",
-        "Atoms → Molecules → Organisms → Templates → Pages",
+        "Enterprise design system",
+        "Foundations → Workflow parts → Business modules → ICON platform",
       ],
       [
         "build",
@@ -807,8 +807,8 @@ export const workflowSections = {
       "future-workflow",
       "Future-state workflow",
       [
-        "Atoms → molecules → organisms → templates → pages.",
-        "Use the system to make new product experiences more cohesive.",
+        "Foundations → workflow parts → business modules → ICON platform.",
+        "Use the system to make connected enterprise experiences more cohesive.",
         "[ADD FUTURE-STATE WORKFLOW DETAILS]",
       ],
     ],

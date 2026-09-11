@@ -360,23 +360,23 @@ function CaseStudyVisual({ kind }) {
     return (
       <div className="case-visual atoms-visual">
         <div>
-          <b>ATOMS</b>
+          <b>FOUNDATIONS</b>
           <span>Type · Color · Spacing</span>
         </div>
         <i>↓</i>
         <div>
-          <b>MOLECULES</b>
+          <b>WORKFLOW PARTS</b>
           <span>Inputs · Buttons · Cards</span>
         </div>
         <i>↓</i>
         <div>
-          <b>ORGANISMS</b>
+          <b>BUSINESS MODULES</b>
           <span>Forms · Tables · Navigation</span>
         </div>
         <i>↓</i>
         <div className="atoms-product">
-          <b>PRODUCT</b>
-          <span>Scalable enterprise interfaces</span>
+          <b>ICON PLATFORM</b>
+          <span>Connected enterprise operations</span>
         </div>
       </div>
     );
@@ -529,8 +529,20 @@ function DesignSnapshotsSection({ project }) {
       ["iOS sick leave", "/images/projects/employee-app/iOS-sick.png"],
       ["iOS work profile", "/images/projects/employee-app/iOS-work.png"],
     ],
-    workflow: ["Contract flow", "Invoice table", "Validation state"],
-    "design-system": ["Design tokens", "Component set", "Enterprise layout"],
+    workflow: [
+      ["CMS dashboard", "/images/projects/contracts-invoice/dashboard.png"],
+      ["Document details", "/images/projects/contracts-invoice/document-details.png"],
+      ["Email template", "/images/projects/contracts-invoice/email-template.png"],
+      ["Project details", "/images/projects/contracts-invoice/project-details.png"],
+      ["Billed services", "/images/projects/contracts-invoice/billed-services.png"],
+      ["Access roles", "/images/projects/contracts-invoice/access-roles.png"],
+    ],
+    "design-system": [
+      ["ICON login", "/images/projects/icon/login.png"],
+      ["Employee dashboard", "/images/projects/icon/employee-dashboard.png"],
+      ["Jobbase", "/images/projects/icon/jobbase.png"],
+      ["Employee insights", "/images/projects/icon/employee-insights.png"],
+    ],
     dashboard: ["KPI overview", "Analytics view", "Progress state"],
     mobile: ["Capture flow", "Recording state", "Review screen"],
     roadmap: ["Learning path", "Course view", "Progress state"],
