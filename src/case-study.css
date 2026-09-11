@@ -200,8 +200,9 @@
   padding: 30px;
 }
 .lightbox-frame {
-  width: min(680px, 90vw);
-  min-height: 520px;
+  width: min(1100px, 92vw);
+  min-height: min(760px, 86vh);
+  max-height: 92vh;
   padding: 35px;
   background: #f06e3c;
   box-shadow: 18px 22px #0004;
@@ -228,7 +229,8 @@
   cursor: pointer;
 }
 .lightbox-art {
-  height: 330px;
+  height: min(64vh, 620px);
+  min-height: 420px;
   margin-top: 28px;
   background: var(--paper);
   padding: 35px;
@@ -237,6 +239,8 @@
   justify-content: end;
   gap: 16px;
   box-shadow: 12px 14px #17171522;
+  overflow: hidden;
+  touch-action: none;
 }
 .lightbox-art i {
   display: block;
@@ -254,6 +258,43 @@
 }
 .lightbox-art i:nth-child(3) {
   width: 58%;
+}
+.lightbox-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+.lightbox-art.is-zoomed img {
+  transition: none;
+}
+.lightbox-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.lightbox-controls button {
+  min-width: 38px;
+  min-height: 34px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: 11px "DM Mono";
+}
+.lightbox-controls button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.lightbox-controls span {
+  min-width: 48px;
+  text-align: center;
+  font: 11px "DM Mono";
 }
 .gallery-2 .lightbox-art {
   background: var(--ink);
@@ -379,6 +420,59 @@
 }
 .gallery-art i:nth-child(3) {
   width: 58%;
+}
+.gallery-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.design-snapshots.project-audit .snapshot-gallery {
+  gap: 18px;
+}
+.design-snapshots.project-audit .gallery-frame {
+  min-height: 390px;
+  padding: 20px;
+}
+.design-snapshots.project-audit .gallery-1 {
+  background: #f08370;
+  transform: rotate(-1deg);
+}
+.design-snapshots.project-audit .gallery-2 {
+  background: #a6c2ef;
+}
+.design-snapshots.project-audit .gallery-3 {
+  background: #dce66b;
+}
+.design-snapshots.project-audit .gallery-4 {
+  background: #b3a6d8;
+  transform: translateY(12px) rotate(1deg);
+}
+.design-snapshots.project-audit .gallery-5 {
+  background: #f3d7a4;
+  transform: rotate(-1deg);
+}
+.design-snapshots.project-audit .gallery-6 {
+  background: #8ecfd0;
+  transform: translateY(14px) rotate(1deg);
+}
+.design-snapshots.project-audit .gallery-art {
+  height: 300px;
+  padding: 10px;
+}
+.design-snapshots.project-audit .gallery-5 .gallery-art,
+.lightbox-frame.gallery-5 .lightbox-art {
+  background: #050505;
+}
+.design-snapshots.project-audit .gallery-5 .gallery-art img,
+.lightbox-frame.gallery-5 .lightbox-art img {
+  object-fit: contain;
+}
+.lightbox-frame.gallery-5 {
+  background: #f2f0ec;
+}
+.lightbox-frame.gallery-5 .lightbox-art {
+  height: min(68vh, 620px);
 }
 .gallery-2 .gallery-art {
   background: #171715;
@@ -770,6 +864,7 @@
   }
   .lightbox-art {
     height: 240px;
+    min-height: 240px;
     padding: 24px;
   }
 }
@@ -807,6 +902,12 @@
   }
   .gallery-3 {
     transform: none;
+  }
+  .design-snapshots.project-audit .gallery-frame {
+    min-height: 440px;
+  }
+  .design-snapshots.project-audit .gallery-art {
+    height: 350px;
   }
 }
 .contact-footer {

@@ -517,21 +517,65 @@ function CapabilityBadge({ label, details }) {
 
 function DesignSnapshotsSection({ project }) {
   const [selectedSnapshot, setSelectedSnapshot] = useState(null);
-  const labels = {
-    audit: ["Audit board", "Mobile flow", "Before / after"],
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const dragRef = useRef(null);
+  const snapshotSets = {
+    audit: [
+      ["Android home", "/images/projects/employee-app/Android-home.png"],
+      ["Android absence", "/images/projects/employee-app/Android-absence.png"],
+      ["Android receipt scan", "/images/projects/employee-app/Android-scan.png"],
+      ["iOS settings", "/images/projects/employee-app/iOS-settings.png"],
+      ["iOS sick leave", "/images/projects/employee-app/iOS-sick.png"],
+      ["iOS work profile", "/images/projects/employee-app/iOS-work.png"],
+    ],
     workflow: ["Contract flow", "Invoice table", "Validation state"],
     "design-system": ["Design tokens", "Component set", "Enterprise layout"],
     dashboard: ["KPI overview", "Analytics view", "Progress state"],
     mobile: ["Capture flow", "Recording state", "Review screen"],
     roadmap: ["Learning path", "Course view", "Progress state"],
-  }[project.kind] || ["UI exploration", "Interaction study", "Visual system"];
+  };
+  const snapshotSet = snapshotSets[project.kind] || ["UI exploration", "Interaction study", "Visual system"];
+  const snapshots = snapshotSet.map((snapshot) => Array.isArray(snapshot) ? { label: snapshot[0], src: snapshot[1] } : { label: snapshot });
+  const labels = snapshots.map(({ label }) => label);
   const changeSnapshot = (direction) => {
     const nextIndex =
       (selectedSnapshot.index + direction + labels.length) % labels.length;
     setSelectedSnapshot({ label: labels[nextIndex], index: nextIndex });
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+  const openSnapshot = (snapshot) => {
+    setSelectedSnapshot(snapshot);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+  const closeSnapshot = () => {
+    setSelectedSnapshot(null);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+  const updatePan = (event) => {
+    if (!dragRef.current) return;
+    const nextPan = {
+      x: dragRef.current.pan.x + event.clientX - dragRef.current.x,
+      y: dragRef.current.pan.y + event.clientY - dragRef.current.y,
+    };
+    setPan(nextPan);
+  };
+  const startPan = (event) => {
+    if (zoom <= 1) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = { x: event.clientX, y: event.clientY, pan };
+  };
+  const endPan = (event) => {
+    if (dragRef.current && event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    dragRef.current = null;
   };
   return (
-    <section id="case-snapshots" className="design-snapshots">
+    <section id="case-snapshots" className={`design-snapshots project-${project.kind}`}>
       <span className="case-number">SNAP</span>
       <div>
         <h3>Design snapshots</h3>
@@ -540,19 +584,17 @@ function DesignSnapshotsSection({ project }) {
           created in Figma.
         </p>
         <div className="snapshot-gallery">
-          {labels.map((label, index) => (
+          {snapshots.map(({ label, src }, index) => (
             <button
               type="button"
               className={`gallery-frame gallery-${index + 1}`}
               key={label}
-              onClick={() => setSelectedSnapshot({ label, index })}
+              onClick={() => openSnapshot({ label, index })}
               aria-label={`Open ${label} design snapshot`}
             >
               <span>FIGMA / 0{index + 1}</span>
               <div className="gallery-art">
-                <i />
-                <i />
-                <i />
+                {src ? <img src={src} alt={`${project.name} ${label}`} /> : <><i /><i /><i /></>}
               </div>
               <figcaption>{label}</figcaption>
             </button>
@@ -565,7 +607,7 @@ function DesignSnapshotsSection({ project }) {
           role="dialog"
           aria-modal="true"
           aria-label={`${selectedSnapshot.label} design snapshot`}
-          onClick={() => setSelectedSnapshot(null)}
+          onClick={closeSnapshot}
         >
           <div
             className={`lightbox-frame gallery-${selectedSnapshot.index + 1}`}
@@ -574,7 +616,7 @@ function DesignSnapshotsSection({ project }) {
             <button
               type="button"
               className="lightbox-close"
-              onClick={() => setSelectedSnapshot(null)}
+              onClick={closeSnapshot}
               aria-label="Close design snapshot"
             >
               ×
@@ -596,10 +638,28 @@ function DesignSnapshotsSection({ project }) {
               →
             </button>
             <span>FIGMA / 0{selectedSnapshot.index + 1}</span>
-            <div className="lightbox-art">
-              <i />
-              <i />
-              <i />
+            <div
+              className={`lightbox-art ${zoom > 1 ? "is-zoomed" : ""}`}
+              onPointerDown={startPan}
+              onPointerMove={updatePan}
+              onPointerUp={endPan}
+              onPointerCancel={endPan}
+              style={{ cursor: zoom > 1 ? "grab" : "default" }}
+            >
+              {snapshots[selectedSnapshot.index]?.src ? (
+                <img
+                  src={snapshots[selectedSnapshot.index].src}
+                  alt={`${project.name} ${selectedSnapshot.label}`}
+                  style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+                  draggable="false"
+                />
+              ) : <><i /><i /><i /></>}
+            </div>
+            <div className="lightbox-controls" aria-label="Image controls">
+              <button type="button" onClick={() => setZoom((current) => Math.max(1, current - 0.25))} aria-label="Zoom out">−</button>
+              <span>{Math.round(zoom * 100)}%</span>
+              <button type="button" onClick={() => setZoom((current) => Math.min(3, current + 0.25))} aria-label="Zoom in">+</button>
+              <button type="button" onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }} aria-label="Reset image view">Reset</button>
             </div>
             <h4>{selectedSnapshot.label}</h4>
             <p>{project.name} · Design snapshot</p>
