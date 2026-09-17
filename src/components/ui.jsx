@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, Moon, Sun, X } from 'lucide-react';
 
-export function Navigation({ isCaseStudy, open, onToggle, onNavigate, onHome }) {
+export function Navigation({ isCaseStudy, darkMode, onToggleTheme, open, onToggle, onNavigate, onHome }) {
   const links = ['About', 'Work', 'Thinking', 'Playground'];
   const handleNavigation = () => { onNavigate(); onHome(); };
   return <header className="nav-wrap">
     <a className="brand" href="#top" onClick={handleNavigation}><span className="brand-mark">RS</span><span>Robert Sam</span></a>
     <nav className={open ? 'nav-links open' : 'nav-links'} aria-label="Primary navigation">{links.map(item => <a key={item} href={'#' + item.toLowerCase()} onClick={handleNavigation}>{item}</a>)}<a className="nav-contact" href="#contact" onClick={handleNavigation}>Let’s talk <ArrowUpRight size={15} aria-hidden="true" /></a></nav>
+    <button className="theme-toggle" type="button" onClick={onToggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} aria-pressed={darkMode} title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}>{darkMode ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}</button>
     <button className="menu-button" type="button" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={onToggle}>{open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
   </header>;
 }

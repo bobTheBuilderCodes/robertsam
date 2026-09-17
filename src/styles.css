@@ -99,6 +99,24 @@ body {
   border: 0;
   background: none;
 }
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 18px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+}
 .section-pad {
   padding: 30px 5vw;
 }
@@ -1164,6 +1182,57 @@ body {
     flex-wrap: wrap;
     margin-top: 90px;
   }
+}
+
+.site-shell.dark-mode {
+  --paper: #171715;
+  --ink: #f4f1eb;
+  --muted: #b8b2a9;
+  --line: #45423d;
+  --orange: #ff916b;
+  --blue: #a9bff0;
+  --lime: #e4ee83;
+  --purple: #c8bbed;
+  background: var(--paper);
+  color: var(--ink);
+}
+.site-shell.dark-mode .nav-wrap {
+  background: #171715d9;
+}
+.site-shell.dark-mode .hero-sub,
+.site-shell.dark-mode .muted,
+.site-shell.dark-mode .contact p {
+  color: var(--muted);
+}
+.site-shell.dark-mode .dark-section {
+  background: #0d0d0c;
+  color: #f4f1eb;
+}
+.site-shell.dark-mode .project-card,
+.site-shell.dark-mode .contact-footer,
+.site-shell.dark-mode .play-card,
+.site-shell.dark-mode .system-card,
+.site-shell.dark-mode .case-study-page,
+.site-shell.dark-mode .case-section,
+.site-shell.dark-mode .case-nav {
+  background: #211f1b;
+  color: var(--ink);
+}
+.site-shell.dark-mode input,
+.site-shell.dark-mode textarea,
+.site-shell.dark-mode select {
+  background: #211f1b;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.site-shell.dark-mode .button-outline,
+.site-shell.dark-mode .nav-contact {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.site-shell.dark-mode .theme-toggle {
+  background: var(--ink);
+  color: var(--paper);
 }
 @media (max-width: 480px) {
   .hero h1 {
